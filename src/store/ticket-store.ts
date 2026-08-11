@@ -60,7 +60,7 @@ interface TicketStore {
   regenerateTickets: () => void;
 }
 
-const generateRandomTickets = (count = 50): Ticket[] => {
+const generateRandomTickets = (count = 250): Ticket[] => {
   const tickets: Ticket[] = [];
   for (let i = 1; i <= count; i++) {
     const random6Digits = Math.floor(100000 + Math.random() * 900000);
@@ -91,6 +91,6 @@ export const useTicketStore = create<TicketStore>((set) => ({
 
   regenerateTickets: () =>
     set(() => ({
-      tickets: generateRandomTickets(50),
+      tickets: generateRandomTickets(250),
     })),
 }));

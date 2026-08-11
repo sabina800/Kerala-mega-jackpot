@@ -156,7 +156,7 @@ export default function TicketSelection() {
 
         {/* Ticket List Container */}
         <div className="border-2 border-dashed border-[#facc15]/40 rounded-2xl p-2 bg-[#091024]/60">
-          <div className="flex flex-col gap-2 max-h-[360px] overflow-y-auto pr-1 custom-scrollbar">
+          <div className="flex flex-col gap-2 max-h-[480px] overflow-y-auto pr-1 custom-scrollbar">
             {tickets.map((ticket) => {
               const isSelected = selectedTicketIds.includes(ticket.id);
 
