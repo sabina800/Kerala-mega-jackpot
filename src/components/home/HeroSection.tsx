@@ -1,182 +1,52 @@
-// 'use client';
-
-// import React, { useState, useEffect } from 'react';
-// import { Lock, ShieldCheck, Zap, MessageSquare, Timer } from 'lucide-react';
-
-// export default function HeroSection() {
-//   const [timeLeft, setTimeLeft] = useState({
-//     hours: 9,
-//     minutes: 44,
-//     seconds: 18,
-//   });
-
-//   useEffect(() => {
-//     const timer = setInterval(() => {
-//       setTimeLeft((prev) => {
-//         if (prev.seconds > 0) {
-//           return { ...prev, seconds: prev.seconds - 1 };
-//         } else if (prev.minutes > 0) {
-//           return { ...prev, minutes: prev.minutes - 1, seconds: 59 };
-//         } else if (prev.hours > 0) {
-//           return { hours: prev.hours - 1, minutes: 59, seconds: 59 };
-//         } else {
-//           clearInterval(timer);
-//           return prev;
-//         }
-//       });
-//     }, 1000);
-
-//     return () => clearInterval(timer);
-//   }, []);
-
-//   const formatTwoDigits = (num: number) => num.toString().padStart(2, '0');
-
-//   return (
-//     <div className="w-full bg-[#070d1e] text-white flex flex-col items-center">
-//       {/* Announcement Bar */}
-//       <div className="w-full bg-[#d33a2c] py-2 px-4 text-center font-bold text-[11px] tracking-wider text-white flex items-center justify-center gap-2 shadow-md">
-//         <span className="h-2 w-2 rounded-full bg-white animate-pulse" />
-//         <span>LIVE DRAW — LIMITED TICKETS AVAILABLE</span>
-//       </div>
-
-//       <div className="w-full px-4 pt-5 pb-4 flex flex-col items-center text-center">
-//         {/* Crown Logo with Radial Glow */}
-//         <div className="relative mb-2 flex items-center justify-center">
-//           <div className="absolute inset-0 bg-[#e8b931]/20 blur-xl rounded-full w-12 h-12 -z-0" />
-//           <div className="text-3xl select-none relative z-10 filter drop-shadow-[0_0_12px_rgba(232,185,49,0.8)]">
-//             👑
-//           </div>
-//         </div>
-
-//         {/* Kerala Mega Jackpot Title */}
-//         <h1 className="text-[25px] font-black tracking-tight leading-tight font-serif text-white">
-//           Kerala <span className="text-[#facc15]">Mega Jackpot</span>
-//         </h1>
-
-//         {/* Official Government Text */}
-//         <p className="text-[9px] font-semibold tracking-widest text-slate-400 uppercase mt-1">
-//           OFFICIAL GOVERNMENT LOTTERY · TRUSTED SINCE 1967
-//         </p>
-
-//         {/* Gold Prize Button */}
-//         <div className="mt-4 w-full max-w-[270px]">
-//           <div className="bg-gradient-to-r from-[#d4af37] via-[#facc15] to-[#c59b27] text-slate-950 font-extrabold text-sm py-2 px-5 rounded-full shadow-[0_0_20px_rgba(250,204,21,0.5)] border border-[#fff2a1] flex items-center justify-center gap-1.5">
-//             <span className="text-base">🏆</span>
-//             <span>First Prize ₹25 Crore</span>
-//           </div>
-//         </div>
-
-//         {/* Countdown Section */}
-//         <div className="mt-6 w-full px-1">
-//           <div className="flex items-center justify-center gap-3">
-//             {/* Draw Closes In Label */}
-//             <div className="flex items-center gap-1 text-[11px] font-black text-[#e53e3e] uppercase tracking-wider">
-//               <Timer className="w-3.5 h-3.5 text-[#e53e3e]" />
-//               <span>DRAW CLOSES IN</span>
-//             </div>
-
-//             {/* Timer Digits and Blinking Colons */}
-//             <div className="flex items-center gap-1.5">
-//               {/* Hours Box */}
-//               <div className="bg-[#10182e] border border-[#1d2b4e] rounded-xl py-1.5 px-3 flex flex-col items-center shadow-lg min-w-[56px]">
-//                 <span className="text-xl font-black text-[#facc15] leading-none font-serif">
-//                   {formatTwoDigits(timeLeft.hours)}
-//                 </span>
-//                 <span className="text-[8px] font-bold text-slate-400 tracking-wider uppercase mt-1">
-//                   HOURS
-//                 </span>
-//               </div>
-
-//               {/* Continuously Blinking Yellow Colon */}
-//               <span className="text-[#facc15] font-black text-lg animate-pulse select-none">
-//                 :
-//               </span>
-
-//               {/* Minutes Box */}
-//               <div className="bg-[#10182e] border border-[#1d2b4e] rounded-xl py-1.5 px-3 flex flex-col items-center shadow-lg min-w-[56px]">
-//                 <span className="text-xl font-black text-[#facc15] leading-none font-serif">
-//                   {formatTwoDigits(timeLeft.minutes)}
-//                 </span>
-//                 <span className="text-[8px] font-bold text-slate-400 tracking-wider uppercase mt-1">
-//                   MINS
-//                 </span>
-//               </div>
-
-//               {/* Continuously Blinking Yellow Colon */}
-//               <span className="text-[#facc15] font-black text-lg animate-pulse select-none">
-//                 :
-//               </span>
-
-//               {/* Seconds Box */}
-//               <div className="bg-[#10182e] border border-[#1d2b4e] rounded-xl py-1.5 px-3 flex flex-col items-center shadow-lg min-w-[56px]">
-//                 <span className="text-xl font-black text-[#facc15] leading-none font-serif">
-//                   {formatTwoDigits(timeLeft.seconds)}
-//                 </span>
-//                 <span className="text-[8px] font-bold text-slate-400 tracking-wider uppercase mt-1">
-//                   SECS
-//                 </span>
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-
-//         {/* VIP Remaining & Gradient Progress Bar */}
-//         <div className="mt-5 w-full px-2">
-//           <div className="flex items-center justify-center gap-1.5 text-xs font-bold text-[#e53e3e] mb-2">
-//             <span>🔥</span>
-//             <span>Only 42 VIP Tickets Remaining!</span>
-//           </div>
-//           <div className="w-full bg-[#10182e] h-2 rounded-full overflow-hidden border border-[#1d2b4e] p-0.5">
-//             <div className="bg-gradient-to-r from-[#e53e3e] via-[#f97316] to-[#facc15] h-full w-[80%] rounded-full shadow-[0_0_10px_rgba(249,115,22,0.8)]" />
-//           </div>
-//         </div>
-
-//         {/* Feature Grid */}
-//         <div className="grid grid-cols-3 gap-2 mt-6 w-full text-center px-1">
-//           <div className="flex items-center justify-center gap-1.5 text-[11px] font-semibold text-slate-300">
-//             <Lock className="w-3.5 h-3.5 text-[#facc15]" />
-//             <span>100% Secure</span>
-//           </div>
-//           <div className="flex items-center justify-center gap-1.5 text-[11px] font-semibold text-slate-300">
-//             <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
-//             <span>Govt Certified</span>
-//           </div>
-//           <div className="flex items-center justify-center gap-1.5 text-[11px] font-semibold text-slate-300">
-//             <Zap className="w-3.5 h-3.5 text-[#facc15]" />
-//             <span>Instant Booking</span>
-//           </div>
-//         </div>
-
-//         <div className="flex items-center justify-center gap-1.5 text-[11px] font-semibold text-slate-300 mt-3">
-//           <MessageSquare className="w-3.5 h-3.5 text-emerald-500" />
-//           <span>WhatsApp Support</span>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-
 "use client";
 
+import { useState, useEffect } from "react";
 import { DynamicDate } from "./DynamicDate";
 
 export function HeroSection() {
+  // Dynamic Scarcity State
+  const [ticketsLeft, setTicketsLeft] = useState(76);
+  const totalTickets = 100; // Reference maximum for percentage calculation
+
+  useEffect(() => {
+    // Har 3 se 6 seconds me count fluctuate / decrease hoga
+    const interval = setInterval(() => {
+      setTicketsLeft((prev) => {
+        // Minimum limit guard (ex: 12 tickets se niche nahi jayega)
+        if (prev <= 12) return 14;
+
+        // Random chance: 80% chance to decrease, 20% chance to slightly fluctuate (+1)
+        const isDecrease = Math.random() > 0.2;
+        if (isDecrease) {
+          const drop = Math.floor(Math.random() * 3) + 1; // Drops by 1, 2, or 3
+          return Math.max(12, prev - drop);
+        } else {
+          return Math.min(88, prev + 1); // Slight increase for dynamic feel
+        }
+      });
+    }, Math.floor(Math.random() * 3000) + 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Calculate dynamic progress bar percentage
+  const progressPercentage = Math.min(100, Math.max(15, (ticketsLeft / totalTickets) * 100));
+
   return (
-    <div className="w-full text-white bg-[#0f1115] flex flex-col items-center">
+    <div className="w-full bg-[#f4f6f8] text-[#111827] flex flex-col items-center">
       {/* Top Banner */}
-      <div className="w-full bg-[#064e3b] py-2 px-3 text-center text-xs sm:text-sm font-semibold text-emerald-100 flex items-[#center] justify-center gap-1 border-b border-emerald-800">
+      <div className="w-full bg-[#03543f] py-2 px-3 text-center text-xs sm:text-sm font-semibold text-white flex items-center justify-center gap-1 border-b border-emerald-800">
         🛡️ Government of Kerala Authorised Lottery Outlet • License Verified
       </div>
 
       <div className="w-full max-w-md px-4 pt-4 flex flex-col items-center text-center">
         {/* Red Today's Draw Bar */}
-        <div className="w-full bg-red-800 border border-red-600 rounded-md py-1.5 px-3 flex justify-between items-center text-xs sm:text-sm font-bold tracking-wide">
-          <span className="flex items-center gap-2 text-white uppercase">
-            <span className="h-2.5 w-2.5 rounded-full bg-red-400 animate-ping inline-block" />
-            Today's Draw Date:
+        <div className="w-full bg-[#b91c1c] rounded-md py-1.5 px-3 flex justify-between items-center text-xs sm:text-sm font-bold tracking-wide text-white">
+          <span className="flex items-center gap-2 uppercase">
+            <span className="h-2.5 w-2.5 rounded-full bg-red-300 animate-ping inline-block" />
+            TODAY'S DRAW DATE:
           </span>
-          <span className="bg-black/60 px-2 py-0.5 rounded text-amber-300 font-mono">
+          <span className="bg-white text-[#b91c1c] px-2 py-0.5 rounded font-mono font-extrabold">
             <DynamicDate />
           </span>
         </div>
@@ -184,49 +54,59 @@ export function HeroSection() {
         {/* Title & Crown */}
         <div className="mt-4 flex flex-col items-center">
           <span className="text-3xl">👑</span>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-emerald-400 tracking-tight font-serif">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#064e3b] tracking-tight font-serif">
             Kerala Mega Jackpot
           </h1>
-          <p className="text-[10px] sm:text-xs text-slate-400 tracking-wider uppercase mt-0.5">
-            Official State Lottery Directorate • Kerala
+          <p className="text-[10px] sm:text-xs text-slate-600 font-bold tracking-wider uppercase mt-0.5">
+            OFFICIAL STATE LOTTERY DIRECTORATE • KERALA
           </p>
         </div>
 
         {/* Bumper Prize Badge */}
-        <div className="mt-3 bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 text-black font-extrabold py-2 px-6 rounded-full shadow-lg shadow-amber-500/20 text-base sm:text-lg flex items-center gap-2">
+        <div className="mt-3 bg-[#c25e00] text-white font-extrabold py-2 px-6 rounded-full shadow-md text-base sm:text-lg flex items-center gap-2">
           🏆 Bumper Prize ₹25 Crore
         </div>
 
         {/* Draw Date Card */}
-        <div className="w-full mt-4 bg-emerald-950/40 border border-emerald-800/60 rounded-xl py-3 px-4 flex flex-col items-center">
-          <span className="text-xs text-emerald-400 font-medium flex items-center gap-1">
+        <div className="w-full mt-4 bg-[#e6f4ea] border border-[#a8e0c2] rounded-xl py-3 px-4 flex flex-col items-center">
+          <span className="text-xs text-[#064e3b] font-bold flex items-center gap-1">
             📅 OFFICIAL DRAW DATE
           </span>
-          <span className="text-lg font-bold text-slate-100 font-mono mt-0.5">
+          <span className="text-lg font-bold text-[#064e3b] font-mono mt-0.5">
             <DynamicDate />
           </span>
         </div>
 
-        {/* Scarcity Bar */}
-        <div className="w-full mt-4 flex flex-col gap-1.5">
-          <p className="text-xs text-red-400 font-bold flex items-center justify-center gap-1">
-            🔥 Only 57 Official Tickets Left!
+        {/* Dynamic Scarcity Bar */}
+        <div className="w-full mt-4 flex flex-col gap-1.5 pr-15 pl-15">
+          <p className="text-xs text-[#dc2626] font-extrabold flex items-center justify-center gap-1">
+            🔥 Only <span className="font-mono text-sm underline transition-all duration-300">{ticketsLeft}</span> Official Tickets Left!
           </p>
-          <div className="w-full bg-slate-800 h-2.5 rounded-full overflow-hidden border border-slate-700">
-            <div className="bg-gradient-to-r from-amber-500 to-orange-500 h-full w-[70%] rounded-full animate-pulse" />
+          <div className="w-full  bg-[#e5e7eb] h-2.5 rounded-full overflow-hidden p-0.5">
+            <div
+              className="bg-gradient-to-r from-red-500 to-amber-500 h-full rounded-full transition-all duration-500 ease-out animate-pulse "
+              style={{ width: `${progressPercentage}%` }}
+            />
           </div>
         </div>
 
         {/* Trust Badges */}
         <div className="grid grid-cols-3 gap-2 w-full mt-4">
-          <div className="bg-slate-900 border border-slate-800 text-[11px] font-semibold text-slate-300 py-1.5 px-2 rounded-lg flex items-center justify-center gap-1">
+          <div className="bg-[#e6f4ea] border border-[#b7e4c7] text-[11px] font-bold text-[#064e3b] py-1.5 px-2 rounded-lg flex items-center justify-center gap-1">
             🔒 100% Safe
           </div>
-          <div className="bg-slate-900 border border-slate-800 text-[11px] font-semibold text-slate-300 py-1.5 px-2 rounded-lg flex items-center justify-center gap-1">
+          <div className="bg-[#e6f4ea] border border-[#b7e4c7] text-[11px] font-bold text-[#064e3b] py-1.5 px-2 rounded-lg flex items-center justify-center gap-1">
             ✅ Govt Approved
           </div>
-          <div className="bg-slate-900 border border-slate-800 text-[11px] font-semibold text-slate-300 py-1.5 px-2 rounded-lg flex items-center justify-center gap-1">
+          <div className="bg-[#e6f4ea] border border-[#b7e4c7] text-[11px] font-bold text-[#064e3b] py-1.5 px-2 rounded-lg flex items-center justify-center gap-1">
             ⚡ Fast Booking
+          </div>
+        </div>
+
+        {/* Support Pill */}
+        <div className="mt-2 w-full flex justify-center">
+          <div className="bg-[#e6f4ea] border border-[#b7e4c7] text-[11px] font-bold text-[#064e3b] py-1.5 px-4 rounded-full flex items-center gap-1">
+            💬 Live WhatsApp Support
           </div>
         </div>
       </div>
