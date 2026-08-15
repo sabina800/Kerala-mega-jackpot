@@ -1,3 +1,4 @@
+
 // "use client";
 
 // import { create } from "zustand";
@@ -11,8 +12,7 @@
 //   regenerateTickets: () => void;
 // }
 
-// // Random Kerala-style Ticket Generator (e.g., KL123456)
-// const generateRandomTickets = (count = 50): Ticket[] => {
+// const generateRandomTickets = (count = 250): Ticket[] => {
 //   const tickets: Ticket[] = [];
 //   for (let i = 1; i <= count; i++) {
 //     const random6Digits = Math.floor(100000 + Math.random() * 900000);
@@ -26,7 +26,7 @@
 // };
 
 // export const useTicketStore = create<TicketStore>((set) => ({
-//   tickets: generateRandomTickets(50),
+//   tickets: [], // Keep empty initially to avoid server/client mismatch
 //   selectedTicketIds: [],
 
 //   toggleTicket: (id) =>
@@ -43,9 +43,14 @@
 
 //   regenerateTickets: () =>
 //     set(() => ({
-//       tickets: generateRandomTickets(50),
+//       tickets: generateRandomTickets(250),
 //     })),
 // }));
+
+
+
+
+
 
 "use client";
 
@@ -56,6 +61,7 @@ interface TicketStore {
   tickets: Ticket[];
   selectedTicketIds: string[];
   toggleTicket: (id: string) => void;
+  selectQuickAmount: (count: number) => void;
   clearSelection: () => void;
   regenerateTickets: () => void;
 }
@@ -74,7 +80,7 @@ const generateRandomTickets = (count = 250): Ticket[] => {
 };
 
 export const useTicketStore = create<TicketStore>((set) => ({
-  tickets: [], // Keep empty initially to avoid server/client mismatch
+  tickets: generateRandomTickets(250),
   selectedTicketIds: [],
 
   toggleTicket: (id) =>
@@ -85,6 +91,13 @@ export const useTicketStore = create<TicketStore>((set) => ({
           ? state.selectedTicketIds.filter((ticketId) => ticketId !== id)
           : [...state.selectedTicketIds, id],
       };
+    }),
+
+  // Quick Select logic
+  selectQuickAmount: (count: number) =>
+    set((state) => {
+      const firstNIds = state.tickets.slice(0, count).map((t) => t.id);
+      return { selectedTicketIds: firstNIds };
     }),
 
   clearSelection: () => set({ selectedTicketIds: [] }),

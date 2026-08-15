@@ -1,6 +1,6 @@
-import HeroSection from "@/components/home/HeroSection";
-import TicketSelection from "@/components/home/TicketSelection";
-import BookingBar from "@/components/home/BookingBar";
+import {HeroSection} from "@/components/home/HeroSection";
+import {TicketSelection} from "@/components/home/TicketSelection";
+import {BookingBar} from "@/components/home/BookingBar";
 import RecentBookingToast from "@/components/home/RecentBookingToast";
 
 export default function Home() {
