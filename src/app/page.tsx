@@ -35,9 +35,13 @@ import { HeroSection } from "@/components/home/HeroSection";
 import { TicketSelection } from "@/components/home/TicketSelection";
 import { BookingBar } from "@/components/home/BookingBar";
 import RecentBookingToast from "@/components/home/RecentBookingToast";
+import { useTicketStore } from "@/store/ticket-store";
 
 export default function Home() {
   const [isChrome, setIsChrome] = useState<boolean>(false);
+useEffect(() => {
+  useTicketStore.getState().fetchData();
+}, []);
 
   useEffect(() => {
     const userAgent = navigator.userAgent;
